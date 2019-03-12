@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        var vehicalName = 'Toyota';
+
+        function printVehicalNameOuter(){
+            console.log(this.vehicalName);
+        }
+
+        console.log(this);
+
+        printVehicalNameOuter();
+
+        //part 01
+       /* var vehicle = {
+            vehicalName:"Nissan",
+            printVehicalNameInner : printVehicalNameOuter
+        };
+        vehicle.printVehicalNameInner();*/
+
+        //toyota nissan
+
+
+
+
+
+
+   // part 02
+       var vehical={
+            vehicalName : "Nissan",
+            printVehicalNameInner:function () {
+                return function () {
+                    console.log(this.vehicalName);
+                }
+            }
+        };
+
+    //part 03 & 04
+      // var execute = vehical.printVehicalNameInner();
+        //execute(); //part 03 //toyota toyota
+      //  execute.call(vehical); //toyota toyota nissan
+        //if line 46 isnt there toyota nissan
+
+    //part 05
+       var execute = vehical.printVehicalNameInner().bind(vehical);
+        execute(); //toyota nissan
+
+
+    </script>
+
+
+</body>
+</html>

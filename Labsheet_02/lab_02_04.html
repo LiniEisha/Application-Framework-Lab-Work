@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        function vehicle(type) {
+            vehicle.vehicleCount++;
+            this.type = type;
+        }
+
+        vehicle.vehicleCount = 0;
+        vehicle.prototype.drive = function () {
+            console.log("vehicle is driving");
+        };
+
+        var vehicle1 = new vehicle("toyota");
+
+        function Car(type) {
+            vehicle.call(this,type);
+        }
+
+        Car.prototype = Object.create(vehicle.prototype);
+        Car.prototype.constructor = Car;
+        Car.prototype.balanceWheels = function () {
+            console.log("Wheels are balanced");
+        };
+        var car = new Car("Nissan");
+
+        car.drive();
+        car.balanceWheels();
+        console.log(car.type ,vehicle.vehicleCount);
+
+    </script>
+
+
+</body>
+</html>
